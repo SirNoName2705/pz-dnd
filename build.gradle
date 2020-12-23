@@ -1,0 +1,32 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        // https://mvnrepository.com/artifact/commons-io/commons-io
+        classpath group: 'commons-io', name: 'commons-io', version: '2.8.0'
+    }
+}
+plugins {
+    // Apply the java plugin to add support for Java
+    id 'java'
+}
+version '1.0'
+
+repositories {
+    jcenter()
+}
+
+sourceSets {
+    media {
+        java.srcDirs = ['media/lua', 'media/scripts']
+        resources.srcDirs = ['media/sound', 'media/textures']
+    }
+}
+
+apply from: 'zomboid.gradle'
+apply from: 'mod.gradle'
+
+jar {
+    from sourceSets.media.output
+}
